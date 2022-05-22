@@ -10,5 +10,6 @@ code/config.prd.php
 *.js
 # Transpiled .css files from .scss
 *.css
+*.css.map
 # PHPUnit reports
 /code/tests/reports/
