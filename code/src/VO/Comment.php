@@ -19,22 +19,27 @@ class Comment
         $this->date      = date('Y-m-d H:i:s');
     }
 
-    public function getArticleID(){
+    public function getArticleID(): int
+    {
         return (int)$this->articleID;
     }
 
-    public function getReplytoID(){
+    public function getReplytoID(): null|int
+    {
         return $this->replytoID;
     }
 
-    public function getUsername(){
+    public function getUsername(): string
+    {
         return $this->username;
     }
 
-    public function getText(){
+    public function getText(): string
+    {
         return $this->text;
     }
-    public function getDate(){
+    public function getDate(): string
+    {
         return $this->date;
     }
 

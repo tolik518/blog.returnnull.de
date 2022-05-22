@@ -27,10 +27,9 @@ class Router
             case '/utility/Binary_to_MLT3_converter/':
             case '/utility/Binary_to_MLT3_online_converter/':
                 return $this->utilityBinaryConverterPage;
-            case preg_match('/\/([A-Za-z]\w+)\/\?article\=[0-9]{1,5}/', (string)$this->variablesWrapper->getRequestUri()):
+            //case preg_match('/\/([A-Za-z]\w+)\/\?article\=[0-9]{1,5}/', (string)$this->variablesWrapper->getRequestUri()):
             case'':
             case'/':
-                return $this->articlePage;
             default:
                 return $this->articlePage; //TODO: 404 Seite
         }

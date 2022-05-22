@@ -10,23 +10,21 @@ class ID
         $this->id = $this->validate($id);
     }
 
-    private function validate($id) : int
+    private function validate($id): int
     {
-        if (is_numeric($id)){
-            return (int)$id;
-        }
-            else
-        {
+        if (!is_numeric($id)) {
             throw new \InvalidArgumentException('ID scheint ungültig zu sein');
         }
+
+        return (int)$id;
     }
 
-    public function __toString() : string
+    public function __toString(): string
     {
         return $this->id;
     }
 
-    public static function fromString($id)
+    public static function fromString($id): ID
     {
         return new ID($id);
     }

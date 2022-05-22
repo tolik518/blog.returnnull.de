@@ -74,7 +74,7 @@ class Article
 
     public static function setEntry($firstname, $lastname, $length, $title, $shorttitle, $text,$description, $date)
     {
-        //TODO: Daten verifizieren evtl
+        //TODO: verify the data?
         return new Article($firstname, $lastname, $length, $title, $shorttitle, $text,$description, $date);
     }
 }

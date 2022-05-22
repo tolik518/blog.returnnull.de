@@ -10,7 +10,7 @@ class Username
         $this->username = $this->validate($username);
     }
 
-    private function validate($name) : string
+    private function validate($name): string
     {
         if ((strlen($name) > 45))
         {
@@ -25,12 +25,12 @@ class Username
         return htmlspecialchars($name);
     }
 
-    public function __toString() : string
+    public function __toString(): string
     {
         return $this->username;
     }
 
-    public static function fromString(string $username)
+    public static function fromString(string $username): Username
     {
         return new Username($username);
     }

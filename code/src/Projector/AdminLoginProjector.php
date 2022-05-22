@@ -4,12 +4,12 @@ namespace Returnnull;
 
 class AdminLoginProjector
 {
-    public function getHtml()
+    public function getHtml(): string
     {
         return $this->fillContent();
     }
 
-    private function fillContent()
+    private function fillContent(): string
     {
         $html   = file_get_contents(HTML . 'adminLoginTemplate.html');
         $header = file_get_contents(HTML . '_header.html');

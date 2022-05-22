@@ -1,8 +1,7 @@
 <?php
-
 namespace Returnnull;
 
-class AdminContentProjector
+class PageNotFoundProjector
 {
     public function getHtml(): string
     {
@@ -11,7 +10,7 @@ class AdminContentProjector
 
     private function fillContent(): string
     {
-        $html   = file_get_contents(HTML . 'newPostTemplate.html');
+        $html   = file_get_contents(HTML . DR . 'PageNotFoundTemplate.html');
         $header = file_get_contents(HTML . '_header.html');
         $head   = file_get_contents(HTML . '_head.html');
 

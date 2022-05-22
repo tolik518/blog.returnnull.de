@@ -27,10 +27,11 @@ class IPadress
         return $ip;
     }
 
-    private function validateIPv4($ip)
+    private function validateIPv4($ip): string //legacy IP
     {
         $ip_exploded = explode(".", $ip);
 
+        //censor the real IP
         $pseudobyte = (int)(((int)$ip_exploded[3] + (int)$ip_exploded[2])/2);
 
         $ip_exploded[2] = $pseudobyte;
@@ -41,20 +42,21 @@ class IPadress
         return $ip;
     }
 
-    private function validateIPv6($ip)
+    private function validateIPv6($ip): string //real IP
     {
         $ip_exploded = explode(":", $ip);
 
+        //censor the real IP
         $pseudobyte = (int)(((int)hexdec($ip_exploded[6]) + (int)hexdec($ip_exploded[7]))/2);
 
-        $ip_exploded[6] = str_pad( dechex($pseudobyte), 4, "0", STR_PAD_LEFT );;
+        $ip_exploded[6] = str_pad( dechex($pseudobyte), 4, "0", STR_PAD_LEFT );
         $ip_exploded[7] = "0000";
 
         $ip = implode(":", $ip_exploded);
         return $ip;
     }
 
-    public function __toString() : string
+    public function __toString(): string
     {
         return $this->ip;
     }

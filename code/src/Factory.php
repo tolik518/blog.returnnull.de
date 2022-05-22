@@ -26,7 +26,9 @@ class Factory
             $this->createAdminContentPage(),
             $this->createAdminLoginPage(),
             $this->createArticlePage(),
-            new PageNotFoundPage(),
+            new PageNotFoundPage(
+                new PageNotFoundProjector()
+            ),
             new UtilityBinaryConverterPage(
                 new UtilityBinaryConverterProjector()
             ),
