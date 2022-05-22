@@ -12,6 +12,8 @@ define('LAST_ARTICLE_ID', 999999);
 
 require_once VENDOR.'autoload.php';
 
+session_start();
+
 $config = $_SERVER['HTTP_HOST'] == 'blog.returnnull.de' ?
           ROOT . "config.prd.php" :
           ROOT . "config.dev.php";

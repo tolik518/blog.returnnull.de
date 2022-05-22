@@ -11,7 +11,7 @@ class AdminLoginPage implements Page
         private VariablesWrapper      $variablesWrapper
     ){}
 
-    public function run()
+    public function run(): void
     {
         if ($this->variablesWrapper->isPost()) {
             if ($this->variablesWrapper->getPostParam('login2') !== null) {
@@ -20,13 +20,13 @@ class AdminLoginPage implements Page
         }
         echo $this->adminLoginProjector->getHtml();
     }
-    private function loginAdmin()
+
+    private function loginAdmin(): void
     {
         $username = $this->variablesWrapper->getPostParam('usr');
         $password = $this->variablesWrapper->getPostParam('pswd');
 
-        if ($this->mySQLAdminLogin->login($username, $password))
-        {
+        if ($this->mySQLAdminLogin->login($username, $password)) {
             $this->sessionManager->setAuthenticatedUser($username);
         }
     }

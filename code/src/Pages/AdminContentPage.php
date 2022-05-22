@@ -19,7 +19,7 @@ class AdminContentPage implements Page
         echo $this->adminProjector->getHtml();
     }
 
-    public function sendArticleToDB()
+    public function sendArticleToDB(): void
     {
         try
         {
@@ -36,7 +36,7 @@ class AdminContentPage implements Page
             );
             $this->mySQLArticleWriter->save($entry);
 
-        } catch (InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException $e) {
             //$this->errorStack[] = $e->getMessage();
             echo $e->getMessage();
         }

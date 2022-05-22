@@ -1,6 +1,6 @@
 # blog.returnnull.de
 
-This is the source code behind [blog.returnnull.de](blog.returnnull.de).
+This is the source code behind [blog.returnnull.de](https://blog.returnnull.de).
 
 #### Tech Stack
 [![php](code/public/img/stack/php.png)](https://www.php.net/manual/de/intro-whatis.php)
@@ -28,7 +28,7 @@ This is the source code behind [blog.returnnull.de](blog.returnnull.de).
 * if you want to see the coverage in PHPStorm then follow these steps:
     * Go to the menu bar in PHPStorm at the top
     * Go to `Run` -> `Show Coverage Data` or press `Strg + Alt + 6` -> `+`
-    * then choose `(projectfolder)/code/tests/reports/coverage/phpunit.coverage.xml` and press `OK` and `show selected`
+    * then choose `(projectfolder)/code/tests/reports/phpunit.coverage.xml` and press `OK` and `show selected`
 
 
 

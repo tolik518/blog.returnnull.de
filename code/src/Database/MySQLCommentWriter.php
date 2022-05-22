@@ -8,7 +8,7 @@ class MySQLCommentWriter
         private MySQLConnector $mySQLConnector
     ){}
 
-    public function save(Comment $comment)
+    public function save(Comment $comment): void
     {
         $articleID = $comment->getArticleID();
         if ($articleID == LAST_ARTICLE_ID){
@@ -28,7 +28,8 @@ class MySQLCommentWriter
         $sql->execute();
     }
 
-    private function getLastArticleID(){
+    private function getLastArticleID(): int
+    {
         $sql = $this->mySQLConnector->prepare('select MAX(id) from Articles');
         $sql->execute();
         return $sql->fetchAll()[0][0];

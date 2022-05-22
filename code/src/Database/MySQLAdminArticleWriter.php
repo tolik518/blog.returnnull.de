@@ -8,10 +8,10 @@ class MySQLAdminArticleWriter
         private MySQLConnector $mySQLConnector
     ){}
 
-    public function save(Article $article)
+    public function save(Article $article): void
     {
         $sql = $this->mySQLConnector->prepare('INSERT INTO Articles (firstname, lastname, length, title, titleshort, slug, text, description, date) 
-                                                     VALUES (:firstname, :lastname, :length, :title, :titleshort, :slug, :text, :description, :date);');
+                                               VALUES (:firstname, :lastname, :length, :title, :titleshort, :slug, :text, :description, :date);');
         $sql->bindValue(':firstname', $article->getFirstname());
         $sql->bindValue(':lastname',  $article->getLastname());
 

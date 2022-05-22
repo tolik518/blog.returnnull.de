@@ -8,7 +8,7 @@ class MySQLMenuLoader
         private MySQLConnector $mySQLConnector
     ){}
 
-    public function get()
+    public function get(): array
     {
         $sql = $this->mySQLConnector->prepare('SELECT id,titleshort,slug
                                                      FROM Articles

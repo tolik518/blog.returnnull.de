@@ -1,7 +1,6 @@
 <?php
 
 namespace Returnnull;
-session_start();
 
 class SessionManager
 {

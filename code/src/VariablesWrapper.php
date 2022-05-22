@@ -26,12 +26,12 @@ class VariablesWrapper
         {
             return $_POST[$param];
         }
-        return "";
+        return null;
     }
 
     public function getGetParam($param)
     {
-        if(!isset($_GET[$param]))
+        if(isset($_GET[$param]))
         {
             return $_GET[$param];
         }
@@ -45,6 +45,10 @@ class VariablesWrapper
 
     public function getServerVar(string $var)
     {
-        return $_SERVER[$var];
+        if(isset($_SERVER[$var]) && !empty($_SERVER[$var]) )
+        {
+            return $_SERVER[$var];
+        }
+        return "";
     }
 }

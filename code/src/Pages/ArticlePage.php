@@ -20,7 +20,7 @@ class ArticlePage implements Page
     public function run(): void
     {
         //TODO: DO NOT pass $_GET['article']
-        if(isset($_GET['article'])){
+        if (isset($_GET['article'])) {
             $articleID = Article::parseID($_GET['article']);
         } else {
             $articleID = LAST_ARTICLE_ID;
@@ -28,37 +28,34 @@ class ArticlePage implements Page
 
         if ($this->variablesWrapper->isPost()) //sending data
         {
-            if(!empty($_POST['website']) || !empty($_POST['comment'])){ //Anti-Spam -> wenn ausgefüllt wurde, dann Spam
+            if (!empty($_POST['website']) || !empty($_POST['comment'])) { //Anti-Spam -> wenn ausgefüllt wurde, dann Spam
                 http_response_code(400);
                 exit();
             }
             $this->sendCommentToDB();
         }
 
-        if(!empty($this->errorStack)){
-            echo $this->landingProjector->getHtml($this->mySQLArticleLoader->get($articleID),
-                $this->mySQLCommentLoader->get($articleID),
-                $this->mySQLMenuLoader->get(),
-                $this->mySQLTagsLoader->get($articleID),
-                $this->errorStack);
+        $article = $this->mySQLArticleLoader->get($articleID);
+        $comments = $this->mySQLCommentLoader->get($articleID);
+        $menupoints = $this->mySQLMenuLoader->get();
+        $tags = $this->mySQLTagsLoader->get($articleID);
+
+        if (empty($this->errorStack)) {
+            echo $this->landingProjector->getHtml($article, $comments, $menupoints, $tags);
         } else {
-            echo $this->landingProjector->getHtml($this->mySQLArticleLoader->get($articleID),
-                $this->mySQLCommentLoader->get($articleID),
-                $this->mySQLMenuLoader->get(),
-                $this->mySQLTagsLoader->get($articleID));
+            echo $this->landingProjector->getHtml($article, $comments, $menupoints, $tags, $this->errorStack);
         }
-
-
     }
-    public function sendCommentToDB()
+    public function sendCommentToDB(): void
     {
-        if(isset($_GET['article'])){
-            $articleID = Article::parseID($_GET['article']);
-        } else {
+        if ($this->variablesWrapper->getGetParam('article') === null) {
             $articleID = LAST_ARTICLE_ID;
+        } else {
+            $articleID = Article::parseID($_GET['article']);
         }
 
-        try{
+        try
+        {
             $entry = Comment::setEntry(
                 articleID: ID::fromString($articleID),
                 replytoID: null,

@@ -4,7 +4,7 @@ namespace Returnnull;
 
 class MySQLConnector extends \PDO
 {
-    public function __construct($config)
+    public function __construct(string $config)
     {
         require_once($config);
         try
@@ -15,5 +15,4 @@ class MySQLConnector extends \PDO
             throw new \Exception($e->getMessage());
         }
     }
-
 }

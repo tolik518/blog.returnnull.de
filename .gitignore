@@ -6,7 +6,9 @@
 /database
 # config for the production enviroment
 code/config.prd.php
-# Transpiled .js files
+# Transpiled .js files from .ts files
 *.js
+# Transpiled .css files from .scss
+*.css
 # PHPUnit reports
 /code/tests/reports/

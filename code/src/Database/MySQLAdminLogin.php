@@ -8,7 +8,7 @@ class MySQLAdminLogin
         private MySQLConnector $mySQLConnector
     ){}
 
-    public function login($username, $password) : bool
+    public function login($username, $password): bool
     {
         $sql = $this->mySQLConnector->prepare('SELECT * FROM Users
                                                               WHERE username=:username');
@@ -16,20 +16,14 @@ class MySQLAdminLogin
         $sql->execute();
         $result = $sql->fetch();
 
-        if ($result)
-        {
-            if(password_verify($password,$result['password']))
-            {
-                return true;
-            }
-            else
-            {
-                return false; //falsches passwort
-            }
-        }
-        else
-        {
+        if (!$result) {
             return false; //falscher username
         }
+
+        if (password_verify($password, $result['password'])) {
+            return true;
+        }
+
+        return false; //falsches passwort
     }
 }

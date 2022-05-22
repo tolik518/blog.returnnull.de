@@ -29,6 +29,10 @@ install:
 update:
 	$(CLI) run --rm --no-deps php_cli php -d memory_limit=-1 /usr/local/bin/composer update
 
+.PHONY: logs
+logs:
+	docker-compose -f docker/compose/docker-compose-dev.yml logs
+
 .PHONY: tests
 tests:
 	$(CLI) run php_cli php -dxdebug.coverage_enable=1 -dxdebug.mode=coverage $(PHPUNIT) \

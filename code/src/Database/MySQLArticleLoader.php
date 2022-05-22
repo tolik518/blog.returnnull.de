@@ -8,22 +8,24 @@ class MySQLArticleLoader
         private MySQLConnector $mySQLConnector
     ){}
 
-    public function get($articleID = LAST_ARTICLE_ID): array
+    public function get(int $articleID = LAST_ARTICLE_ID): array
     {
-        if ($articleID == LAST_ARTICLE_ID){
+        if ($articleID == LAST_ARTICLE_ID) {
             $articleID = $this->getLastArticleID();
          }
 
         $result = $this->fetchArticle($articleID);
 
-        if(!empty($result)){
+        if (!empty($result)) {
             return $result[0];
-        } else { //wenn kein artikel, dann gib mir wenigstens den letzten Artikel
-            return $this->fetchArticle($this->getLastArticleID())[0];
         }
+
+        //wenn kein artikel, dann gib mir wenigstens den letzten Artikel
+        return $this->fetchArticle($this->getLastArticleID())[0];
     }
 
-    private function fetchArticle($articleID){
+    private function fetchArticle(int $articleID): array
+    {
         $sql = $this->mySQLConnector->prepare('SELECT *
                                                      FROM Articles
                                                      WHERE id = :id;');
@@ -32,8 +34,10 @@ class MySQLArticleLoader
         return $sql->fetchAll();
     }
 
-    private function getLastArticleID(){
-        $sql = $this->mySQLConnector->prepare('select MAX(id) from Articles');
+    private function getLastArticleID(): int
+    {
+        $sql = $this->mySQLConnector->prepare('SELECT MAX(id) 
+                                                     FROM Articles');
         $sql->execute();
         return $sql->fetchAll()[0][0];
     }
