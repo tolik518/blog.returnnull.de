@@ -1,0 +1,12 @@
+# IDE settings
+.idea
+# Vendor folder generated with 'make install'
+/code/vendor
+# Database created by docker
+/database
+# config for the production enviroment
+code/config.prd.php
+# Transpiled .js files
+*.js
+# PHPUnit reports
+/code/tests/reports/

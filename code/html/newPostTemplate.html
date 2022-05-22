@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+%HEAD%
+<body>
+<div id="site">
+  %HEADER%
+  <div id="undertheheader">
+
+    <div id="menu">
+      <div class="bar"> menu </div>
+      <a href="/admin"><div class="menu_option">1.<div class="menu_text">New post +</div></div></a>
+      <a href="/admin"><div class="menu_option">2.<div class="menu_text">All posts</div></div></a>
+      <a href="/admin"><div class="menu_option">2.<div class="menu_text">Statistics</div></div></a>
+    </div>
+    <div id="article">
+      <div id="articleWrapper">
+        <div class="bar">New Post +</div>
+        <div id="text">
+        <div class="newpost">
+          <form method="post">
+            <div id="metadata">
+              <div id="titles">
+                <label for="Title">Titel</label>
+                <input id="title" name="title"/>
+                <label for="shorttitle">Kurztitel</label>
+                <input id="shorttitle" name="shorttitle"/>
+              </div>
+              <div id="otherMeta">
+                <label for="author">Author</label>
+                <input id="author" name="author"/>
+
+                <label for="date">Datum</label>
+                <input id="date" name="date"/>
+              </div>
+              <script type="module" src="/js/admin/date.js"></script>
+            </div>
+
+            <label for="blogEntry">Eintrag</label>
+            <textarea id="blogEntry" name="text"></textarea>
+            <label for="blogDesc">Beschreibung</label>
+            <textarea id="blogDesc" name="description"></textarea>
+            <span><label for="tagsinput">Tags</label><input id="tagsinput" name="tagsinput"/></span>
+            <span><input id="textlength" name="length" value="0 Bytes" readonly/></span>
+            <div class="buttonWrapper">
+              <input type="submit" id="send" class="button" value="Posten"/>
+            </div>
+          </form>
+          <script type="module" src="/js/admin/countChars.js"></script>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

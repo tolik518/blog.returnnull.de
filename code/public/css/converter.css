@@ -1,0 +1,52 @@
+#content{
+    width: max-content;
+    margin: auto;
+}
+
+p {
+    margin: 0;
+    display: flex;
+    background-color: white;
+    color: black;
+    align-items: center;
+}
+
+textarea{
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: available;
+    height: 64px;
+    background: #5555FF;
+    color: #FFFFFF;
+    padding: 2px;
+    padding-left: 5px;
+    outline: none;
+    border: 2px solid white;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 0.5;
+}
+
+textarea#ascii{
+    height: 16px;
+}
+
+textarea#hex{
+    height: 32px;
+}
+
+textarea#binary{
+    height: 48px;
+}
+
+textarea:active{
+    outline: none;
+    border: 2px solid red;
+}
+
+textarea:focus{
+    outline: none;
+    border: 2px solid red;
+}

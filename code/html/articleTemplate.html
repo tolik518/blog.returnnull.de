@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+%HEAD%
+<body>
+  <div id="site">
+    %HEADER%
+    <div id="undertheheader">
+      <div id="lefttoolbar">
+        <div id="menu">
+          <div class="bar">
+            %MENUTITLE%
+          </div>
+          %MENU%
+        </div>
+
+        <div id="menu">
+          <div class="bar">
+            Utility
+          </div>
+          <a href="/utility/4B5B_to_MLT3_converter/"><div class="menu_option">1.<div class="menu_text">Binary to 4B5B</div></div></a>
+        </div>
+      </div>
+      <div id="article">
+        <div id="articleWrapper">
+
+          %BLOGPOST%
+
+        </div>
+        <div id="comments">
+          <div class="bar">Comments</div>
+          <div id="commentForm">
+            <form method="post">
+              <label for="commentUsername">Username</label>
+              <input id="commentUsername" name="commentUsername"/>
+              <label for="website" style="display: none">Website</label>
+              <input type="text" id="website" name="website" style="display: none"/>
+              <label for="comment" style="display: none">Comment</label>
+              <input type="text" id="comment" name="comment" style="display: none"/>
+              <input id="textlength" name="textlength" style="display: none"/>
+
+              <div id="commentFied">
+                <label for="commentText">Kommentar</label>
+                <textarea id="commentText" name="commentText"></textarea>
+              </div>
+
+              <script>
+                var comment = document.getElementById("commentText");
+                var username = document.getElementById("commentUsername");
+                var textlengthinput = document.getElementById("textlength");
+                var i = 0;
+                comment.addEventListener("input", function()
+                {
+                  textlengthinput.setAttribute("value",i++);
+                });
+                username.addEventListener("input", function()
+                {
+                  textlengthinput.setAttribute("value",i++);
+                });
+              </script>
+              <input type="submit" id="sendComment" class="button" value="Posten"/>
+              <div style="background: red;border: 2px solid white; display: %FEHLERDISPLAY%; padding: 2px;" >%FEHLER%</div>
+            </form>
+          </div>
+
+          %COMMENTS%
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

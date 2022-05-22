@@ -1,0 +1,10 @@
+version: '3.5'
+services:
+  php_cli:
+    image: blog.returnnull.de/php_cli:dev
+    container_name: returnnull_php_cli
+    working_dir: /var/www/html
+    volumes:
+      - ./../../code:/var/www/html
+    environment:
+      - VHOST=localhost

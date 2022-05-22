@@ -1,0 +1,363 @@
+@font-face {
+  font-family: "IBM_VGA";
+  src: url("oldschool_pc_font_pack/woff/Web437_IBM_VGA_8x14.woff");
+  font-display: swap;
+}
+* {
+  font-family: "IBM_VGA";
+  font-size: 16px;
+}
+
+::selection {
+  background-color: #FF5555;
+}
+
+a {
+  text-decoration: none;
+  color: #5555FF;
+  background: white;
+}
+
+a:visited {
+  text-decoration: none;
+  color: #5555FF;
+  background: white;
+}
+
+a:hover {
+  color: white;
+  background: #5555FF;
+}
+
+body {
+  font-family: "IBM_VGA", monospace;
+  font-weight: 400;
+  background-color: #555555;
+  color: white;
+}
+body #site .bar {
+  width: 100%;
+  background: white;
+  height: 15px;
+  color: #000000;
+  text-align: center;
+  line-height: 14px;
+}
+body #site #header {
+  width: max-content;
+  box-shadow: none;
+  border: none;
+  overflow: visible;
+  line-height: 0.3;
+  white-space: nowrap;
+  filter: drop-shadow(15px 15px #000000);
+  letter-spacing: -1px;
+  margin-left: 50px;
+  background: #000000;
+  padding-bottom: 10px;
+  border: 2px solid white;
+}
+body #site #header pre.TOLIK518 {
+  white-space: pre;
+  filter: drop-shadow(0px 1em #00AAAA);
+  font-family: "IBM_VGA", monospace;
+  padding-inline: 15px;
+  color: #0000AA;
+}
+body #site #header pre.TOLIK518:nth-child(2) {
+  color: #AAAAAA;
+}
+body #site #header pre.TOLIK518:nth-child(3) {
+  color: #55FFFF;
+}
+body #site #header pre.TOLIK518:nth-child(4) {
+  color: #00AAAA;
+}
+body #site #header pre.TOLIK518:nth-child(5) {
+  color: #5555FF;
+}
+body #site #undertheheader {
+  display: flex;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+body #site #undertheheader #article {
+  width: 50rem;
+}
+body #site #undertheheader #article #comments {
+  width: 50rem;
+  margin-left: 30px;
+  margin-bottom: 30px;
+}
+body #site #undertheheader #article #comments .comment {
+  background: #555555;
+  filter: drop-shadow(15px 15px #000000);
+  border: 2px solid;
+  margin-bottom: 30px;
+}
+body #site #undertheheader #article #comments #commentForm {
+  background: #555555;
+  filter: drop-shadow(15px 15px #000000);
+  border: 2px solid;
+  margin-bottom: 30px;
+  padding-inline: 15px;
+  padding-bottom: 30px;
+  padding-top: 15px;
+}
+body #site #undertheheader #article #comments #commentForm #commentUsername {
+  padding-top: 0;
+  padding-bottom: 0;
+  border: 0;
+  height: 15px;
+  padding-inline: 7px;
+}
+body #site #undertheheader #article #comments #commentForm #commentUsername:active {
+  outline: none;
+  border: none;
+}
+body #site #undertheheader #article #comments #commentForm #commentUsername:focus {
+  outline: none;
+  border: none;
+}
+body #site #undertheheader #article #comments #commentForm #commentText {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: available;
+  height: 5em;
+  background: #FFFFFF;
+  color: #000000;
+  padding-left: 5px;
+  padding-top: 5px;
+  outline: none;
+  border: 2px solid white;
+}
+body #site #undertheheader #article #comments #commentForm .button {
+  border-radius: 0px;
+  border: 0;
+  float: right;
+}
+body #site #undertheheader #article #comments #commentForm .button:hover {
+  background-color: #AAAAAA;
+}
+body #site #undertheheader #article #articleWrapper {
+  background: #5555FF;
+  filter: drop-shadow(15px 15px #000000);
+  margin-left: 30px;
+  margin-bottom: 30px;
+  width: 50rem;
+  border: 2px solid;
+}
+body #site #undertheheader #article #articleWrapper #adminLogin {
+  width: max-content;
+  margin: auto;
+  display: grid;
+  padding: 15px;
+}
+body #site #undertheheader #article #articleWrapper #adminLogin input {
+  border-radius: 0px;
+  border-style: revert;
+  filter: drop-shadow(15px 15px #000000);
+}
+body #site #undertheheader #article #articleWrapper #adminLogin input#password {
+  opacity: 0;
+  background-color: red;
+}
+body #site #undertheheader #article #articleWrapper #adminLogin input#username {
+  opacity: 0;
+  background-color: red;
+}
+body #site #undertheheader #article #articleWrapper #adminLogin #login {
+  opacity: 0;
+  background-color: red;
+}
+body #site #undertheheader #article #articleWrapper .metadata {
+  display: inline-block;
+  width: 48rem;
+  padding-inline: 1rem;
+  border-bottom: 2px dashed #FFFFFF;
+}
+body #site #undertheheader #article #articleWrapper .metadata .author {
+  text-align: left;
+  width: 33%;
+  display: inherit;
+}
+body #site #undertheheader #article #articleWrapper .metadata .characters {
+  text-align: center;
+  width: 33%;
+  display: inherit;
+}
+body #site #undertheheader #article #articleWrapper .metadata .date {
+  text-align: right;
+  width: 34%;
+  display: inherit;
+}
+body #site #undertheheader #article #articleWrapper .tags {
+  display: inline-block;
+  width: 48rem;
+  padding-inline: 1rem;
+  border-top: 2px dashed #FFFFFF;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  height: 1rem;
+}
+body #site #undertheheader #article #articleWrapper .tags .tags-wrapper {
+  position: absolute;
+  right: 1rem;
+}
+body #site #undertheheader #article #articleWrapper .tags .tags-wrapper .tag {
+  padding: 2px;
+  background-color: #FFFFFF;
+  color: #0000AA;
+}
+body #site #undertheheader #article #text {
+  padding: 15px;
+}
+body #site #undertheheader #article #text #metadata {
+  display: flex;
+}
+body #site #undertheheader #article #text #metadata #titles {
+  width: 40rem;
+}
+body #site #undertheheader #article #text #metadata #titles #title, body #site #undertheheader #article #text #metadata #titles #shorttitle {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: available;
+  padding-top: 0;
+  padding-bottom: 0;
+  border: 0;
+  height: 15px;
+  padding-inline: 7px;
+}
+body #site #undertheheader #article #text #metadata #titles #title:active, body #site #undertheheader #article #text #metadata #titles #shorttitle:active {
+  outline: none;
+  border: none;
+}
+body #site #undertheheader #article #text #metadata #titles #title:focus, body #site #undertheheader #article #text #metadata #titles #shorttitle:focus {
+  outline: none;
+  border: none;
+}
+body #site #undertheheader #article #text #metadata #otherMeta {
+  width: 15rem;
+}
+body #site #undertheheader #article #text #metadata #otherMeta #author, body #site #undertheheader #article #text #metadata #otherMeta #date {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: available;
+  padding-top: 0;
+  padding-bottom: 0;
+  border: 0;
+  border-left: 2px solid black;
+  height: 15px;
+  padding-inline: 7px;
+}
+body #site #undertheheader #article #text #metadata #otherMeta #author:active, body #site #undertheheader #article #text #metadata #otherMeta #date:active {
+  outline: none;
+  border: none;
+  border-left: 2px solid black;
+}
+body #site #undertheheader #article #text #metadata #otherMeta #author:focus, body #site #undertheheader #article #text #metadata #otherMeta #date:focus {
+  outline: none;
+  border: none;
+  border-left: 2px solid black;
+}
+body #site #undertheheader #article #text #blogEntry {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: available;
+  height: 20em;
+  background: #5555FF;
+  color: #FFFFFF;
+  padding-left: 5px;
+  padding-top: 5px;
+  margin-bottom: 5px;
+  outline: none;
+  border: 2px solid white;
+}
+body #site #undertheheader #article #text #blogDesc {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: available;
+  height: 5em;
+  background: #5555FF;
+  color: #FFFFFF;
+  padding-left: 5px;
+  padding-top: 5px;
+  margin-bottom: 5px;
+  outline: none;
+  border: 2px solid white;
+}
+body #site #undertheheader #article #text #textlength {
+  background: none;
+  border: none;
+  font-family: "IBM_VGA";
+  color: #FFFFFF;
+  float: right;
+  width: 5em;
+  cursor: default;
+}
+body #site #undertheheader #article #text #textlength:hover {
+  border: none;
+  outline: none;
+}
+body #site #undertheheader #article #text #textlength:target {
+  border: none;
+  outline: none;
+}
+body #site #undertheheader #article #text #tagsinput {
+  width: 15em;
+  padding-top: 0;
+  padding-bottom: 0;
+  border: 0;
+  height: 15px;
+  padding-inline: 7px;
+  margin: 5px;
+}
+body #site #undertheheader #article #text #tagsinput:active {
+  outline: none;
+  border: none;
+}
+body #site #undertheheader #article #text #tagsinput:focus {
+  outline: none;
+  border: none;
+}
+body #site #undertheheader #article #text .buttonWrapper {
+  margin-right: 0px;
+  margin-left: auto;
+  width: max-content;
+}
+body #site #undertheheader #article #text .buttonWrapper .button {
+  border-radius: 0px;
+  border: 0;
+  width: 7em;
+}
+body #site #undertheheader #article #text .buttonWrapper .button:hover {
+  background-color: #AAAAAA;
+}
+body #site #undertheheader #menu {
+  background: #5555FF;
+  filter: drop-shadow(15px 15px #000000);
+  width: 20rem;
+  height: max-content;
+  border: 2px solid;
+  flex-shrink: 0;
+  margin-bottom: 30px;
+}
+body #site #undertheheader #menu a {
+  color: inherit;
+  /* blue colors for links too */
+  text-decoration: inherit;
+  /* no underline */
+}
+body #site #undertheheader #menu a .menu_option {
+  cursor: pointer;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: flex;
+  margin-inline: 15px;
+}
+body #site #undertheheader #menu a .menu_option:hover {
+  background: #AAAAAA;
+  color: #FFFFFF;
+}
+
+/*# sourceMappingURL=stylesheet.css.map */
