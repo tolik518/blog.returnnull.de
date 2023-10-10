@@ -2,24 +2,17 @@
 CLI = docker-compose -f docker/compose/docker-compose-cli.yml
 PHPUNIT = /var/www/html/vendor/bin/phpunit
 
-.PHONY: build_dev
-build_dev:
-	docker build -f docker/php/Dockerfile . \
-	-t blog.returnnull.de/php:dev
-	docker build -f docker/nginx/Dockerfile . \
-	-t blog.returnnull.de/nginx:dev
-	docker build -f docker/database/Dockerfile . \
-	-t blog.returnnull.de/database:dev
-	docker build -f docker/php_cli/Dockerfile . \
-	-t blog.returnnull.de/php_cli:dev
+.PHONY: build
+build:
+	docker compose build
 
 .PHONY: run
 run:
-	docker-compose -f docker/compose/docker-compose-dev.yml up -d
+	docker-compose up -d
 
 .PHONY: stop
 stop:
-	docker-compose -f docker/compose/docker-compose-dev.yml down --remove-orphans
+	docker-compose down --remove-orphans
 
 .PHONY: install
 install:
@@ -31,7 +24,7 @@ update:
 
 .PHONY: logs
 logs:
-	docker-compose -f docker/compose/docker-compose-dev.yml logs
+	docker-compose logs
 
 .PHONY: tests
 tests:

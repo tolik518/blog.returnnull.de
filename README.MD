@@ -18,10 +18,10 @@ This is the source code behind [blog.returnnull.de](https://blog.returnnull.de).
 
 #### How to Start Development
 * clone repository
-* build images with `make build_dev`
-* use `make run` to start the containers
-    * `make install` to install the dependencies and to update the autoloader (do this everyime you add a new class)
-* use `make stop` to stop the containers
+* build images with `make build` or with `docker compose build` 
+* use `make run` or `docker-compose up -d` to start the containers
+    * to install the dependencies and to update the autoloader (do this everyime you add a new class) `make install` or `docker-compose -f docker/compose/docker-compose-cli.yml run --rm --no-deps php_cli php -d memory_limit=-1 /usr/local/bin/composer install`
+* use `make stop` or `docker-compose down --remove-orphans` to stop the containers
 
 ### Access Admin Panel
 * go to http://localhost/admin
