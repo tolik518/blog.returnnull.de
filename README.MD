@@ -23,6 +23,10 @@ This is the source code behind [blog.returnnull.de](https://blog.returnnull.de).
     * `make install` to install the dependencies and to update the autoloader (do this everyime you add a new class)
 * use `make stop` to stop the containers
 
+### Access Admin Panel
+* go to http://localhost/admin
+* login with username `tolik518` and password `tolik518`
+
 #### How to execute PHPUnit-Tests
 * `make unit_test`
 * if you want to see the coverage in PHPStorm then follow these steps:
@@ -36,7 +40,6 @@ This is the source code behind [blog.returnnull.de](https://blog.returnnull.de).
     TODO: Tag-System im Admin Bereich
     TODO: Klickbare Tags -> Tag-Page/Projector
     TODO: Artikelvorschläge auf Grund von Tags
-    TODO: Generate the database if there isnt one
 
     TODO: Head Modulieren
 
@@ -49,7 +52,6 @@ This is the source code behind [blog.returnnull.de](https://blog.returnnull.de).
     TODO: Sitemap
     TODO: security.txt
     TODO: _badwords.txt
-    TODO: brave-rewards-verification.txt  | Brave / Crypto tipping info
     TODO: https://en.wikipedia.org/wiki/Well-known_URI lesen und umsetzten
     TODO: meta data & SEO
     TODO: Add (google) search appearance
