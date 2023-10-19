@@ -21,12 +21,14 @@
         </div>
       </div>
       <div id="article">
-        <div id="articleWrapper">
+        %MESSAGES%
+
+        <div id="articleWrapper" %ARTICLE_VISIBLITY% >
 
           %BLOGPOST%
 
         </div>
-        <div id="comments">
+        <div id="comments" %ARTICLE_VISIBLITY% >
           <div class="bar">Comments</div>
           <div id="commentForm">
             <form method="post">

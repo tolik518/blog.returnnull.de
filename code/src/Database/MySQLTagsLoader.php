@@ -8,7 +8,7 @@ class MySQLTagsLoader
         private MySQLConnector $mySQLConnector
     ){}
 
-    public function get(int $articleID): array
+    public function get(?int $articleID): array
     {
         if ($articleID == LAST_ARTICLE_ID){
             $articleID = $this->getLastArticleID();
@@ -16,7 +16,7 @@ class MySQLTagsLoader
         return $this->fetchTags($articleID);
     }
 
-    private function fetchTags(int $articleID): array
+    private function fetchTags(?int $articleID): array
     {
         $sql = $this->mySQLConnector->prepare('SELECT tagsID
                                                      FROM ArticleTags
@@ -39,10 +39,15 @@ class MySQLTagsLoader
         return $tags;
     }
 
-    private function getLastArticleID(): int
+    private function getLastArticleID(): ?int
     {
-        $sql = $this->mySQLConnector->prepare('select MAX(id) from Articles');
+        $sql = $this->mySQLConnector->prepare('SELECT MAX(id) FROM Articles');
         $sql->execute();
-        return $sql->fetchAll()[0][0];
+        
+        $result = $sql->fetchAll();
+        if ($result[0][0]) {
+            return $result [0][0];
+        }
+        return null;
     }
 }

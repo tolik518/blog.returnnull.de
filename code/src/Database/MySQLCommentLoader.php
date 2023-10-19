@@ -26,10 +26,15 @@ class MySQLCommentLoader
         return $sql->fetchAll();
     }
 
-    private function getLastArticleID(): int
+    private function getLastArticleID(): ?int
     {
-        $sql = $this->mySQLConnector->prepare('select MAX(id) from Articles');
+        $sql = $this->mySQLConnector->prepare('SELECT MAX(id) FROM Articles');
         $sql->execute();
-        return $sql->fetchAll()[0][0];
+        
+        $result = $sql->fetchAll();
+        if ($result[0][0]) {
+            return $result [0][0];
+        }
+        return null;
     }
 }

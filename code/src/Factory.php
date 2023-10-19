@@ -63,7 +63,9 @@ class Factory
     private function createArticlePage(): ArticlePage
     {
        return new ArticlePage(
-            new ArticleProjector(),
+            new ArticleProjector(
+                new MessageProjector()
+            ),
             new MySQLArticleLoader(
                 $this->mySQLConnector
             ),

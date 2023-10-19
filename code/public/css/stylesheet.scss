@@ -95,6 +95,63 @@ body {
             margin-left: 50px;
             margin-top: 30px;
 
+            .message {
+                margin-left: 30px;
+                margin-bottom: 30px;
+                width: 50rem;
+                padding: 15px;
+                position: relative;
+                filter: drop-shadow(15px 15px #000000);
+
+                &.error-dialog {
+                    background-color: darkred;
+                    .title {
+                        background-color: darkred;
+                    }
+                }
+
+                &.info-dialog {
+                    background-color: rgb(20, 5, 228);
+                    .title {
+                        background-color: rgb(20, 5, 228);;
+                    }
+                }
+
+                &.success-dialog {
+                    background-color: rgb(36, 153, 1);
+                    .title {
+                        background-color: rgb(36, 153, 1);
+                    }
+                }
+
+                &.warning-dialog {
+                    background-color: rgb(194, 136, 0);
+                    .title {
+                        background-color: rgb(194, 136, 0);
+                    }
+                }
+
+                .wrapper {
+                    height: 100px;
+                    padding: 25px;
+                    border: 5px double white;
+                  }
+                  .wrapper .title {
+                    top: 5%;
+                    left: 50%;
+                    transform: translate(-50%, -5%);
+                    padding: 0 10px 0 10px;
+                    position: absolute;
+                  }
+                  .wrapper .body {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: white;
+                    height: 100%;
+                  }
+              }
+
             #article{
                 width: 50rem;
                 #comments{
