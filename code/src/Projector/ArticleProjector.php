@@ -4,6 +4,10 @@ namespace Returnnull;
 
 class ArticleProjector
 {
+    public function __construct(
+        private MessageProjector $messageProjector
+    ){}
+
     public function getHtml($article, $comments, $menupoints, $tags, $errors = [""]): string
     {
         return $this->fillContent($article, $comments, $menupoints, $tags, $errors);
@@ -11,6 +15,11 @@ class ArticleProjector
 
     public function fillContent($article, $comments, $menupoints, $tags, $errors = null): string
     {
+        
+        if (!$article) {
+            $this->messageProjector->addMessage('error', 'Not Found', 'Article not found');
+        }
+
         $html   = file_get_contents(HTML . 'articleTemplate.html');
         $header = file_get_contents(HTML . '_header.html');
         $head   = file_get_contents(HTML . '_head.html');
@@ -58,17 +67,23 @@ class ArticleProjector
             $html = str_replace('%FEHLERDISPLAY%', "block", $html);
         }
 
+        $isArticleVisible = (bool)$article;
+        $html = str_replace('%ARTICLE_VISIBLITY%', ($isArticleVisible ? '' : 'hidden'), $html);
         $html = str_replace('%FEHLER%', $errors[0], $html);
         $html = str_replace('%COMMENTS%', $commentsHTML, $html);
         $html = str_replace('%ALLTAGS%',  trim($tagsHTML, "&nbsp;"), $html);
-        $html = str_replace('%ARTICLETITLE%', $article['title'], $html);
-        $html = str_replace('%NAME%',   $article['firstname'], $html);
-        $html = str_replace('%LENGTH%', $article['length'], $html);
-        $html = str_replace('%DATE%',   $article['date'], $html);
-        $html = str_replace('%TEXT%',   $article['text'], $html);
+        if ($article) {
+            $html = str_replace('%ARTICLETITLE%', $article['title'], $html);
+            $html = str_replace('%NAME%',   $article['firstname'], $html);
+            $html = str_replace('%LENGTH%', $article['length'], $html);
+            $html = str_replace('%DATE%',   $article['date'], $html);
+            $html = str_replace('%TEXT%',   $article['text'], $html);
+        }
 
         $html = str_replace('%HEADER%', $header, $html);
         $html = str_replace('%HEAD%',   $head, $html);
+
+        $html = str_replace('%MESSAGES%', $this->messageProjector->getHtml(), $html);
 
         return $html;
     }
