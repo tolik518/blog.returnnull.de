@@ -30,3 +30,11 @@ services:
       - MYSQL_DATABASE=blog
     ports:
       - '3306:3306'
+
+  sass:
+    build:
+      context: docker/sass
+      dockerfile: Dockerfile
+    container_name: returnnull_sass
+    volumes:
+      - ./code/public/css:/var/www/html
