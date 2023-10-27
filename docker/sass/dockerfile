@@ -1,0 +1,11 @@
+FROM node:17-alpine
+
+RUN apk add --no-cache \
+    python3 make g++ \
+    && rm -rf /var/cache/apk/*
+
+RUN npm install -g node-sass-chokidar@2.0.0
+
+WORKDIR /var/www/html
+
+CMD ["node-sass-chokidar", "/var/www/html", "-o", "/var/www/html", "--watch"]
