@@ -44,6 +44,7 @@ class Factory
             new MySQLAdminArticleWriter(
                 $this->mySQLConnector
             ),
+            new SessionManager(),
             new VariablesWrapper()
         );
     }

@@ -7,6 +7,7 @@ class AdminContentPage implements Page
     public function __construct(
         private AdminContentProjector   $adminProjector,
         private MySQLAdminArticleWriter $mySQLArticleWriter,
+        private SessionManager          $sessionManager,
         private VariablesWrapper        $variablesWrapper
     ){}
 
@@ -16,7 +17,9 @@ class AdminContentPage implements Page
         {
             $this->sendArticleToDB();
         }
-        echo $this->adminProjector->getHtml();
+        echo $this->adminProjector->getHtml(
+            $this->sessionManager->getAuthenticatedUser()
+        );
     }
 
     public function sendArticleToDB(): void
