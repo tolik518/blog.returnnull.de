@@ -24,7 +24,7 @@ class Router
                 throw new \InvalidArgumentException('Page must be an instance of BasePage');
             }
 
-            if ($page->isUrlSupported((string)$this->variablesWrapper->getRequestUri())) {
+            if ($page->isUrlSupported(Request::getInstance())) {
                 if ($page->isProtected()) {
                     if ($this->sessionManager->isAuthenticated() === false) {
                         return $this->pageFactory->create('AdminLoginPage');

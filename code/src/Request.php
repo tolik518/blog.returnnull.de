@@ -4,6 +4,21 @@ namespace Returnnull;
 
 class Request
 {
+    private static ?Request $instance = null;
+
+    private function __construct()
+    {
+    }
+
+    public static function getInstance(): Request
+    {
+        if (self::$instance === null) {
+            self::$instance = new Request();
+        }
+
+        return self::$instance;
+    }
+
     public function getMethod()
     {
         return $_SERVER['REQUEST_METHOD'];
