@@ -5,33 +5,35 @@ namespace Returnnull;
 class Router
 {
     public function __construct(
-        private AdminContentPage $adminContentPage,
-        private AdminLoginPage   $adminLoginPage,
-        private ArticlePage      $articlePage,
-        private PageNotFoundPage $pagePotFoundPage,
-        private UtilityBinaryConverterPage $utilityBinaryConverterPage,
+        private PageFactory $pageFactory,
+        private FileSystem  $fileSystem,
         private VariablesWrapper $variablesWrapper,
         private SessionManager   $sessionManager
-    ){}
+    ) {
+    }
 
-    public function getPageForUrl() : Page
+    public function getPageForUrl(): Page
     {
-        switch ((string)$this->variablesWrapper->getRequestUri())
-        {
-            case '/admin':
-                if ($this->sessionManager->isAuthenticated()) {
-                    return $this->adminContentPage;
-                }
-                return $this->adminLoginPage;
-            case '/utility/4B5B_to_MLT3_converter/':
-            case '/utility/Binary_to_MLT3_converter/':
-            case '/utility/Binary_to_MLT3_online_converter/':
-                return $this->utilityBinaryConverterPage;
-            //case preg_match('/\/([A-Za-z]\w+)\/\?article\=[0-9]{1,5}/', (string)$this->variablesWrapper->getRequestUri()):
-            case'':
-            case'/':
-            default:
-                return $this->articlePage; //TODO: 404 Seite
+        $classes = $this->fileSystem->getFilesFromPath(__DIR__ . '/Pages', 'php');
+        foreach ($classes as $class) {
+            $pages[] = $this->pageFactory->create($class);
         }
+
+        foreach ($pages as $page) {
+            if ($page instanceof BasePage === false) {
+                throw new \InvalidArgumentException('Page must be an instance of BasePage');
+            }
+
+            if ($page->isUrlSupported((string)$this->variablesWrapper->getRequestUri())) {
+                if ($page->isProtected()) {
+                    if ($this->sessionManager->isAuthenticated() === false) {
+                        return $this->pageFactory->create('AdminLoginPage');
+                    }
+                }
+                return $page;
+            }
+        }
+
+        return $this->pageFactory->create('PageNotFoundPage');
     }
 }

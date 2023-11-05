@@ -23,15 +23,10 @@ class Factory
     private function createRouter(): Router
     {
         return new Router(
-            $this->createAdminContentPage(),
-            $this->createAdminLoginPage(),
-            $this->createArticlePage(),
-            new PageNotFoundPage(
-                new PageNotFoundProjector()
+            new PageFactory(
+                $this->mySQLConnector
             ),
-            new UtilityBinaryConverterPage(
-                new UtilityBinaryConverterProjector()
-            ),
+            new FileSystem(),
             new VariablesWrapper(),
             new SessionManager()
         );
@@ -44,6 +39,7 @@ class Factory
             new MySQLAdminArticleWriter(
                 $this->mySQLConnector
             ),
+            new SessionManager(),
             new VariablesWrapper()
         );
     }

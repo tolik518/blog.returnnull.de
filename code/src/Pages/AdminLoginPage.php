@@ -2,7 +2,7 @@
 
 namespace Returnnull;
 
-class AdminLoginPage implements Page
+class AdminLoginPage extends BasePage
 {
     public function __construct(
         private AdminLoginProjector   $adminLoginProjector,
@@ -11,14 +11,21 @@ class AdminLoginPage implements Page
         private VariablesWrapper      $variablesWrapper
     ){}
 
-    public function run(): void
+    public function run(Request $request): Response
     {
         if ($this->variablesWrapper->isPost()) {
             if ($this->variablesWrapper->getPostParam('login2') !== null) {
                 $this->loginAdmin();//logging in
             }
         }
-        echo $this->adminLoginProjector->getHtml();
+        return new Response(
+            $this->adminLoginProjector->getHtml()
+        );
+    }
+
+    public function getSupportedUrlRegexes(): array
+    {
+        return ['/\/admin\/login/'];
     }
 
     private function loginAdmin(): void

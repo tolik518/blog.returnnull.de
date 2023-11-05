@@ -2,7 +2,7 @@
 
 namespace Returnnull;
 
-class ArticlePage implements Page
+class ArticlePage extends BasePage
 {
     private $errorStack = [];
 
@@ -17,7 +17,7 @@ class ArticlePage implements Page
         private VariablesWrapper   $variablesWrapper
     ){}
 
-    public function run(): void
+    public function run(Request $request): Response
     {
         //TODO: DO NOT pass $_GET['article']
         if (isset($_GET['article'])) {
@@ -41,11 +41,21 @@ class ArticlePage implements Page
         $tags = $this->mySQLTagsLoader->get($articleID);
 
         if (empty($this->errorStack)) {
-            echo $this->landingProjector->getHtml($article, $comments, $menupoints, $tags);
+            return new Response(
+                $this->landingProjector->getHtml($article, $comments, $menupoints, $tags)
+            );
         } else {
-            echo $this->landingProjector->getHtml($article, $comments, $menupoints, $tags, $this->errorStack);
+            return new Response(
+                $this->landingProjector->getHtml($article, $comments, $menupoints, $tags, $this->errorStack)
+            );
         }
     }
+
+    public function getSupportedUrlRegexes(): array
+    {
+        return ['/\/$/', '/\/?article=[0-9]+/'];
+    }
+
     public function sendCommentToDB(): void
     {
         if ($this->variablesWrapper->getGetParam('article') === null) {

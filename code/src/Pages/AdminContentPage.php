@@ -2,21 +2,36 @@
 
 namespace Returnnull;
 
-class AdminContentPage implements Page
+class AdminContentPage extends BasePage
 {
     public function __construct(
         private AdminContentProjector   $adminProjector,
         private MySQLAdminArticleWriter $mySQLArticleWriter,
+        private SessionManager          $sessionManager,
         private VariablesWrapper        $variablesWrapper
     ){}
 
-    public function run(): void
+    public function run(Request $request): Response
     {
         if ($this->variablesWrapper->isPost()) //sending data
         {
             $this->sendArticleToDB();
         }
-        echo $this->adminProjector->getHtml();
+        return new Response(
+            $this->adminProjector->getHtml(
+                $this->sessionManager->getAuthenticatedUser()
+            )
+        );
+    }
+
+    public function getSupportedUrlRegexes(): array
+    {
+        return ['/\/admin/'];
+    }
+
+    public function isProtected(): bool
+    {
+        return true;
     }
 
     public function sendArticleToDB(): void
