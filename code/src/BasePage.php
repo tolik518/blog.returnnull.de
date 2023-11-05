@@ -14,10 +14,10 @@ class BasePage implements Page {
         throw new \Exception('Implement getSupportedUrlRegexes() method.');
     }
 
-    public function isUrlSupported(string $path): bool
+    public function isUrlSupported(Request $request): bool
     {
         foreach ($this->getSupportedUrlRegexes() as $regex) {
-            if (preg_match($regex, $path)) {
+            if (preg_match($regex, $request->getUri())) {
                 return true;
             }
         }

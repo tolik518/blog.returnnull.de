@@ -8,7 +8,7 @@ interface Page
 
     public function getSupportedUrlRegexes(): array;
 
-    public function isUrlSupported(string $path): bool;
+    public function isUrlSupported(Request $request): bool;
 
     public function isProtected(): bool;
 }

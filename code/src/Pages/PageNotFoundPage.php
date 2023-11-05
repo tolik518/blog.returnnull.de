@@ -21,7 +21,7 @@ class PageNotFoundPage extends BasePage
         return [''];
     }
 
-    public function isUrlSupported(string $path): bool
+    public function isUrlSupported(Request $request): bool
     {
         // special case! this page is not supported, becouse it have to be the last page in the chain!
         return false;
