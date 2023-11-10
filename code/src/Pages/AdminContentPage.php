@@ -2,7 +2,7 @@
 
 namespace Returnnull;
 
-class AdminContentPage extends BasePage
+class AdminContentPage implements Page
 {
     public function __construct(
         private AdminContentProjector   $adminProjector,

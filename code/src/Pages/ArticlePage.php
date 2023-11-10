@@ -2,7 +2,7 @@
 
 namespace Returnnull;
 
-class ArticlePage extends BasePage
+class ArticlePage implements Page
 {
     private $errorStack = [];
 
@@ -79,5 +79,10 @@ class ArticlePage extends BasePage
         }  catch (\InvalidArgumentException $e) {
             $this->errorStack[] = $e->getMessage();
         }
+    }
+
+    public function isProtected(): bool
+    {
+        return false;
     }
 }

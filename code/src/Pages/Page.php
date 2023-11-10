@@ -21,13 +21,6 @@ interface Page
     public function getSupportedUrlRegexes(): array;
 
     /**
-     * @param Request $request
-     *
-     * @return bool
-     */
-    public function isUrlSupported(Request $request): bool;
-
-    /**
      * Checks if the page only viewable by the admin
      *
      * @return bool

@@ -2,7 +2,7 @@
 
 namespace Returnnull;
 
-class UtilityBinaryConverterPage extends BasePage
+class UtilityBinaryConverterPage implements Page
 {
     public function __construct(
         private UtilityBinaryConverterProjector $utilityBinaryConverterProjector
@@ -22,5 +22,10 @@ class UtilityBinaryConverterPage extends BasePage
             '|utility/Binary_to_MLT3_converter|',
             '|utility/Binary_to_MLT3_online_converter|'
         ];
+    }
+
+    public function isProtected(): bool
+    {
+        return false;
     }
 }

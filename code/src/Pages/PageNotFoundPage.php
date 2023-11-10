@@ -2,7 +2,7 @@
 
 namespace Returnnull;
 
-class PageNotFoundPage extends BasePage
+class PageNotFoundPage implements Page
 {
     public function __construct(
         private PageNotFoundProjector $pageNotFoundProjector
@@ -18,12 +18,17 @@ class PageNotFoundPage extends BasePage
 
     public function getSupportedUrlRegexes(): array
     {
-        return [''];
+        return [];
     }
 
     public function isUrlSupported(Request $request): bool
     {
         // special case! this page is not supported, becouse it have to be the last page in the chain!
+        return false;
+    }
+
+    public function isProtected(): bool
+    {
         return false;
     }
 }

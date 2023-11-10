@@ -2,21 +2,20 @@
 
 namespace Returnnull;
 
+use DirectoryIterator;
+
 class FileSystem
 {
     public function getFilesFromPath($path, $extension = null)
     {
-        $dir = new \DirectoryIterator($path);
+        $dir = new DirectoryIterator($path);
         $classes = [];
 
+        /** @var DirectoryIterator $fileinfo */
         foreach ($dir as $fileinfo) {
             if (!$fileinfo->isDot()) {
                 $filename = $fileinfo->getFilename();
-                if ($extension && pathinfo($filename, PATHINFO_EXTENSION) == $extension) {
-                    $classes[] = pathinfo($filename, PATHINFO_FILENAME);
-                } else {
-                    $classes[] = pathinfo($filename, PATHINFO_FILENAME);
-                }
+                $classes[] = pathinfo($filename, PATHINFO_FILENAME);
             }
         }
 

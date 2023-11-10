@@ -2,7 +2,7 @@
 
 namespace Returnnull;
 
-class AdminLoginPage extends BasePage
+class AdminLoginPage implements Page
 {
     public function __construct(
         private AdminLoginProjector   $adminLoginProjector,
@@ -38,5 +38,10 @@ class AdminLoginPage extends BasePage
         if ($this->mySQLAdminLogin->login($username, $password)) {
             $this->sessionManager->setAuthenticatedUser($username);
         }
+    }
+
+    public function isProtected(): bool
+    {
+        return false;
     }
 }
