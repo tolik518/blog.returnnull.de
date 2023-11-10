@@ -53,7 +53,10 @@ class ArticlePage extends BasePage
 
     public function getSupportedUrlRegexes(): array
     {
-        return ['/\/$/', '/\/?article=[0-9]+/'];
+        return [
+            '|.*?article=[0-9]+|',
+            '|^[/]{1}$|'
+        ];
     }
 
     public function sendCommentToDB(): void

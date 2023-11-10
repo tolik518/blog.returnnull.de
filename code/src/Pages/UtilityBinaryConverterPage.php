@@ -17,6 +17,10 @@ class UtilityBinaryConverterPage extends BasePage
 
     public function getSupportedUrlRegexes(): array
     {
-        return ['/\/utility\/(4B5B_to_MLT3_converter|Binary_to_MLT3_converter|Binary_to_MLT3_online_converter)/'];
+        return [
+            '|utility/4B5B_to_MLT3_converter|',
+            '|utility/Binary_to_MLT3_converter|',
+            '|utility/Binary_to_MLT3_online_converter|'
+        ];
     }
 }

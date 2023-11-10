@@ -26,7 +26,9 @@ class AdminContentPage extends BasePage
 
     public function getSupportedUrlRegexes(): array
     {
-        return ['/\/admin/'];
+        return [
+            '|admin|'
+        ];
     }
 
     public function isProtected(): bool

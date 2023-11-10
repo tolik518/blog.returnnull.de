@@ -25,7 +25,9 @@ class AdminLoginPage extends BasePage
 
     public function getSupportedUrlRegexes(): array
     {
-        return ['/\/admin\/login/'];
+        return [
+            '|admin/login|'
+        ];
     }
 
     private function loginAdmin(): void
