@@ -1,3 +1,3 @@
-FROM arm64v8/mysql:8.0.29
+FROM mysql:8.0.26
 
 COPY ./schema /docker-entrypoint-initdb.d
