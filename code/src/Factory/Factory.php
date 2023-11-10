@@ -27,7 +27,6 @@ class Factory
                 $this->mySQLConnector
             ),
             new FileSystem(),
-            new VariablesWrapper(),
             new SessionManager()
         );
     }

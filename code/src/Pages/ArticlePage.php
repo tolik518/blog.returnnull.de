@@ -13,7 +13,6 @@ class ArticlePage extends BasePage
         private MySQLCommentWriter $mySQLCommentWriter,
         private MySQLMenuLoader    $mySQLMenuLoader,
         private MySQLTagsLoader    $mySQLTagsLoader,
-        private SessionManager     $sessionManager,
         private VariablesWrapper   $variablesWrapper
     ){}
 
@@ -44,11 +43,11 @@ class ArticlePage extends BasePage
             return new Response(
                 $this->landingProjector->getHtml($article, $comments, $menupoints, $tags)
             );
-        } else {
-            return new Response(
-                $this->landingProjector->getHtml($article, $comments, $menupoints, $tags, $this->errorStack)
-            );
         }
+
+        return new Response(
+            $this->landingProjector->getHtml($article, $comments, $menupoints, $tags, $this->errorStack)
+        );
     }
 
     public function getSupportedUrlRegexes(): array
@@ -59,7 +58,7 @@ class ArticlePage extends BasePage
         ];
     }
 
-    public function sendCommentToDB(): void
+    private function sendCommentToDB(): void
     {
         if ($this->variablesWrapper->getGetParam('article') === null) {
             $articleID = LAST_ARTICLE_ID;

@@ -36,7 +36,7 @@ class AdminContentPage extends BasePage
         return true;
     }
 
-    public function sendArticleToDB(): void
+    private function sendArticleToDB(): void
     {
         try
         {
