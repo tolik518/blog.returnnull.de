@@ -11,11 +11,16 @@ class FileSystem
         $dir = new DirectoryIterator($path);
         $classes = [];
 
-        /** @var DirectoryIterator $fileinfo */
         foreach ($dir as $fileinfo) {
             if (!$fileinfo->isDot()) {
                 $filename = $fileinfo->getFilename();
-                $classes[] = pathinfo($filename, PATHINFO_FILENAME);
+                if ($extension) {
+                    if (pathinfo($filename, PATHINFO_EXTENSION) == $extension) {
+                        $classes[] = pathinfo($filename, PATHINFO_FILENAME);
+                    }
+                } else {
+                    $classes[] = pathinfo($filename, PATHINFO_FILENAME);
+                }
             }
         }
 
