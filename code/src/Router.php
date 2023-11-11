@@ -23,7 +23,7 @@ class Router
 
         foreach ($pages as $page) {
             if (!($page instanceof Page)) {
-                throw new InvalidArgumentException('Page must be an instance of BasePage');
+                throw new InvalidArgumentException('Class must implement Page interface');
             }
         }
 
