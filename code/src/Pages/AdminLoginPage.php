@@ -11,14 +11,23 @@ class AdminLoginPage implements Page
         private VariablesWrapper      $variablesWrapper
     ){}
 
-    public function run(): void
+    public function run(Request $request): Response
     {
         if ($this->variablesWrapper->isPost()) {
             if ($this->variablesWrapper->getPostParam('login2') !== null) {
                 $this->loginAdmin();//logging in
             }
         }
-        echo $this->adminLoginProjector->getHtml();
+        return new Response(
+            $this->adminLoginProjector->getHtml()
+        );
+    }
+
+    public function getSupportedUrlRegexes(): array
+    {
+        return [
+            '|admin/login|'
+        ];
     }
 
     private function loginAdmin(): void
@@ -29,5 +38,10 @@ class AdminLoginPage implements Page
         if ($this->mySQLAdminLogin->login($username, $password)) {
             $this->sessionManager->setAuthenticatedUser($username);
         }
+    }
+
+    public function isProtected(): bool
+    {
+        return false;
     }
 }

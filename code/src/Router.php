@@ -2,36 +2,75 @@
 
 namespace Returnnull;
 
+use InvalidArgumentException;
+
 class Router
 {
     public function __construct(
-        private AdminContentPage $adminContentPage,
-        private AdminLoginPage   $adminLoginPage,
-        private ArticlePage      $articlePage,
-        private PageNotFoundPage $pagePotFoundPage,
-        private UtilityBinaryConverterPage $utilityBinaryConverterPage,
-        private VariablesWrapper $variablesWrapper,
+        private PageFactory $pageFactory,
+        private FileSystem  $fileSystem,
         private SessionManager   $sessionManager
-    ){}
+    ) {
+    }
 
-    public function getPageForUrl() : Page
+    public function getPageForUrl(): Page
     {
-        switch ((string)$this->variablesWrapper->getRequestUri())
-        {
-            case '/admin':
-                if ($this->sessionManager->isAuthenticated()) {
-                    return $this->adminContentPage;
-                }
-                return $this->adminLoginPage;
-            case '/utility/4B5B_to_MLT3_converter/':
-            case '/utility/Binary_to_MLT3_converter/':
-            case '/utility/Binary_to_MLT3_online_converter/':
-                return $this->utilityBinaryConverterPage;
-            //case preg_match('/\/([A-Za-z]\w+)\/\?article\=[0-9]{1,5}/', (string)$this->variablesWrapper->getRequestUri()):
-            case'':
-            case'/':
-            default:
-                return $this->articlePage; //TODO: 404 Seite
+        $pages = $this->fetchPages();
+
+        if (empty($pages)) {
+            return $this->pageFactory->create(PageNotFoundPage::class);
         }
+
+        foreach ($pages as $page) {
+            if (!($page instanceof Page)) {
+                throw new InvalidArgumentException('Class must implement Page interface');
+            }
+        }
+
+        $request = Request::getInstance();
+
+        foreach ($pages as $page) {
+            if (!$this->isUrlSupported($request, $page)) {
+                continue;
+            }
+
+            if ($this->isNotAccessible($page)) {
+                return $this->pageFactory->create(AdminLoginPage::class);
+            }
+
+            return $page;
+        }
+        return $this->pageFactory->create(PageNotFoundPage::class);
+    }
+
+    private function isUrlSupported(Request $request, Page $page): bool
+    {
+        foreach ($page->getSupportedUrlRegexes() as $regex) {
+            if (preg_match($regex, $request->getUri())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private function fetchPages(): array
+    {
+        $classesAll = $this->fileSystem->getFilesFromPath(__DIR__ . '/Pages', 'php');
+        // Filter out the "Page" Interface
+        $classes = array_filter($classesAll, static function($class) {
+            return $class !== 'Page';
+        });
+
+        $pages = [];
+        foreach ($classes as $class) {
+            $pages[] = $this->pageFactory->create($class);
+        }
+
+        return $pages;
+    }
+
+    private function isNotAccessible(Page $page): bool
+    {
+        return $page->isProtected() && $this->sessionManager->isAuthenticated() === false;
     }
 }

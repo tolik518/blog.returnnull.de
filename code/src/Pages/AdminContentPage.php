@@ -11,18 +11,32 @@ class AdminContentPage implements Page
         private VariablesWrapper        $variablesWrapper
     ){}
 
-    public function run(): void
+    public function run(Request $request): Response
     {
         if ($this->variablesWrapper->isPost()) //sending data
         {
             $this->sendArticleToDB();
         }
-        echo $this->adminProjector->getHtml(
-            $this->sessionManager->getAuthenticatedUser()
+        return new Response(
+            $this->adminProjector->getHtml(
+                $this->sessionManager->getAuthenticatedUser()
+            )
         );
     }
 
-    public function sendArticleToDB(): void
+    public function getSupportedUrlRegexes(): array
+    {
+        return [
+            '|admin|'
+        ];
+    }
+
+    public function isProtected(): bool
+    {
+        return true;
+    }
+
+    private function sendArticleToDB(): void
     {
         try
         {

@@ -15,7 +15,7 @@ class Application
 
     public function run(): void
     {
-        $this->page->run();
         $this->tracker->trackUserInfo();
+        $this->page->run(Request::getInstance())->send();
     }
 }

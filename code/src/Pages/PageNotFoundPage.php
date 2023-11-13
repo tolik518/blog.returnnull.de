@@ -8,10 +8,27 @@ class PageNotFoundPage implements Page
         private PageNotFoundProjector $pageNotFoundProjector
     ){}
 
-    public function run() : void
+    public function run(Request $request): Response
     {
-        http_response_code(404);
-        header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
-        echo $this->pageNotFoundProjector->getHtml();
+        return new Response(
+            $this->pageNotFoundProjector->getHtml(),
+            404
+        );
+    }
+
+    public function getSupportedUrlRegexes(): array
+    {
+        return [];
+    }
+
+    public function isUrlSupported(Request $request): bool
+    {
+        // special case! this page is not supported, becouse it have to be the last page in the chain!
+        return false;
+    }
+
+    public function isProtected(): bool
+    {
+        return false;
     }
 }
