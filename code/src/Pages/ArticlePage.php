@@ -14,11 +14,11 @@ class ArticlePage implements Page
         private MySQLMenuLoader    $mySQLMenuLoader,
         private MySQLTagsLoader    $mySQLTagsLoader,
         private VariablesWrapper   $variablesWrapper
-    ){}
+    ) {}
 
     public function run(Request $request): Response
     {
-        //TODO: DO NOT pass $_GET['article']
+        //TODO: DO NOT pass $_GET global
         if (isset($_GET['article'])) {
             $articleID = Article::parseID($_GET['article']);
         } else {
@@ -27,7 +27,9 @@ class ArticlePage implements Page
 
         if ($this->variablesWrapper->isPost()) //sending data
         {
-            if (!empty($_POST['website']) || !empty($_POST['comment'])) { //Anti-Spam -> wenn ausgefüllt wurde, dann Spam
+            if (!empty($_POST['website']) || !empty($_POST['comment']))
+            { //Anti-Spam -> if its filled out, then its probably spam
+                // TODO: save this to a DB
                 http_response_code(400);
                 exit();
             }
@@ -75,8 +77,9 @@ class ArticlePage implements Page
                 text:     CommentText::fromString($this->variablesWrapper->getPostParam('commentText'))
             );
             $this->mySQLCommentWriter->save($entry);
-
-        }  catch (\InvalidArgumentException $e) {
+        }
+        catch (\InvalidArgumentException $e)
+        {
             $this->errorStack[] = $e->getMessage();
         }
     }

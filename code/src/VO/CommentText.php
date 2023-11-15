@@ -11,13 +11,14 @@ class CommentText
         $this->text = $this->filter($text);
     }
 
-    private function filter($text): string
+    private function filter(string $text): string
     {
         $badwords = $this->getBadwords();
 
         if ($text == '' || $text == null) {
-            throw new \InvalidArgumentException('Ungültige Nachricht:<br /> Nachricht kann nicht leer sein.');
+            throw new \InvalidArgumentException('Invalid message:<br /> Message cant be empty.');
         }
+
         return htmlspecialchars(str_replace($badwords, "!@#%?", $text));
     }
 

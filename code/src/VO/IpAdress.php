@@ -2,7 +2,7 @@
 
 namespace Returnnull;
 
-class IPadress
+class IpAdress
 {
     private string $ip;
     private function __construct($ip)
@@ -19,7 +19,8 @@ class IPadress
         elseif (str_contains($ip,":"))
         {
             $ip = $this->validateIPv6($ip);
-        } else
+        }
+        else
         {
             $ip = 'unknown';
         }
@@ -31,7 +32,7 @@ class IPadress
     {
         $ip_exploded = explode(".", $ip);
 
-        //censor the real IP
+        // censor the real IP
         $pseudobyte = (int)(((int)$ip_exploded[3] + (int)$ip_exploded[2])/2);
 
         $ip_exploded[2] = $pseudobyte;
@@ -61,8 +62,8 @@ class IPadress
         return $this->ip;
     }
 
-    public static function fromString(string $ip): IPadress
+    public static function fromString(string $ip): IpAdress
     {
-        return new IPadress($ip);
+        return new IpAdress($ip);
     }
 }

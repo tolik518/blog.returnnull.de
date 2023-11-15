@@ -45,7 +45,7 @@ class Comment
 
     public static function setEntry(ID $articleID, null|int $replytoID, Username $username, CommentText $text)
     {
-        //TODO: Daten verifizieren evtl
+        //TODO: Verify the data
         return new Comment($articleID, $replytoID, $username, $text);
     }
 }

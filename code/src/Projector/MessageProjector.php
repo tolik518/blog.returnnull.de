@@ -23,6 +23,7 @@ class MessageProjector
     private function fillContent(): string
     {
         $messageHtml = '';
+
         foreach ($this->messages as $message) {
             $messageHtml .= str_replace(
                 ['%TITLE%', '%TEXT%', '%TYPE%'],

@@ -13,7 +13,7 @@ class Article
         private $text,
         private $description,
         private $date
-    ){}
+    ) {}
 
     public function getSlug(): string
     {
@@ -66,15 +66,16 @@ class Article
 
     public static function parseID(string $ID)
     {
-        if($ID == (int)$ID){
+        if ($ID == (int)$ID) {
             return (string)$ID;
         }
+
         return LAST_ARTICLE_ID;
     }
 
     public static function setEntry($firstname, $lastname, $length, $title, $shorttitle, $text,$description, $date)
     {
-        //TODO: verify the data?
+        //TODO: Verify the data
         return new Article($firstname, $lastname, $length, $title, $shorttitle, $text,$description, $date);
     }
 }

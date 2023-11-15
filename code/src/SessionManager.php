@@ -28,19 +28,20 @@ class SessionManager
 
     public function commentLock()
     {
-        if(!isset($_SESSION['s'])){
+        if (!isset($_SESSION['s'])) {
             $_SESSION['s'] = true;
         }
+
         return $_SESSION['s'];
     }
 
     public function setCommentLock()
     { //TODO: let that session expire
-        if(!isset($_SESSION['s'])){
+        if (!isset($_SESSION['s'])) {
             $_SESSION['s'] = true;
         }
 
-        if(!empty( $_POST ) && ($_SESSION['s']) )
+        if (!empty( $_POST ) && ($_SESSION['s']))
         {
             $_SESSION['s'] = false;
         }

@@ -11,8 +11,8 @@ class TrackedUser
         private string $requestprotocol,
         private string $redirectstatus,
         private string $useragent,
-        private string $refferer
-    ){}
+        private string $referer
+    ) {}
 
     public function getIp(): string
     {
@@ -44,14 +44,14 @@ class TrackedUser
         return htmlentities((string)$this->useragent);
     }
 
-    public function getRefferer(): string
+    public function getReferer(): string
     {
-        return htmlentities((string)$this->refferer);
+        return htmlentities((string)$this->referer);
     }
 
-    public static function setEntry($ip, $visitedtime, $url, $requestprotocol, $redirectstatus, $useragent, $refferer)
+    public static function setEntry($ip, $visitedtime, $url, $requestprotocol, $redirectstatus, $useragent, $referer)
     {
-        //TODO: Daten verifizieren!
-        return new TrackedUser($ip, $visitedtime, $url, $requestprotocol, $redirectstatus, $useragent, $refferer);
+        //TODO: Verify the data
+        return new TrackedUser($ip, $visitedtime, $url, $requestprotocol, $redirectstatus, $useragent, $referer);
     }
 }

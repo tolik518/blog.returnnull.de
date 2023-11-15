@@ -6,7 +6,7 @@ use DirectoryIterator;
 
 class FileSystem
 {
-    public function getFilesFromPath($path, $extension = null)
+    public function getFilesFromPath($path, $extension = null): array
     {
         $dir = new DirectoryIterator($path);
         $classes = [];

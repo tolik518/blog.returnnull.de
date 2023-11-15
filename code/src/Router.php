@@ -21,7 +21,8 @@ class Router
             return $this->pageFactory->create(PageNotFoundPage::class);
         }
 
-        foreach ($pages as $page) {
+        foreach ($pages as $page)
+        {
             if (!($page instanceof Page)) {
                 throw new InvalidArgumentException('Class must implement Page interface');
             }
@@ -29,7 +30,8 @@ class Router
 
         $request = Request::getInstance();
 
-        foreach ($pages as $page) {
+        foreach ($pages as $page)
+        {
             if (!$this->isUrlSupported($request, $page)) {
                 continue;
             }
@@ -40,16 +42,19 @@ class Router
 
             return $page;
         }
+
         return $this->pageFactory->create(PageNotFoundPage::class);
     }
 
     private function isUrlSupported(Request $request, Page $page): bool
     {
-        foreach ($page->getSupportedUrlRegexes() as $regex) {
+        foreach ($page->getSupportedUrlRegexes() as $regex)
+        {
             if (preg_match($regex, $request->getUri())) {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -62,6 +67,7 @@ class Router
         });
 
         $pages = [];
+
         foreach ($classes as $class) {
             $pages[] = $this->pageFactory->create($class);
         }

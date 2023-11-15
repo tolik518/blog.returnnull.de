@@ -9,7 +9,7 @@ class AdminContentPage implements Page
         private MySQLAdminArticleWriter $mySQLArticleWriter,
         private SessionManager          $sessionManager,
         private VariablesWrapper        $variablesWrapper
-    ){}
+    ) {}
 
     public function run(Request $request): Response
     {
@@ -40,10 +40,10 @@ class AdminContentPage implements Page
     {
         try
         {
-            $entry   = Article::setEntry(
+            $entry = Article::setEntry(
                 firstname:  $this->variablesWrapper->getPostParam('author'),
                 lastname:   "",
-                //the length parameter needs a special treatment since our post variable looks like this "23 Byte", we need to cut off the Byte part
+                // the length parameter needs a special treatment since our post variable looks like this "23 Byte", we need to cut off the Byte part
                 length:     explode( " ", $this->variablesWrapper->getPostParam('length'))[0],
                 title:      $this->variablesWrapper->getPostParam('title'),
                 shorttitle: $this->variablesWrapper->getPostParam('shorttitle'),

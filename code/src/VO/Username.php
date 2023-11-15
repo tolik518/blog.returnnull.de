@@ -14,12 +14,12 @@ class Username
     {
         if ((strlen($name) > 45))
         {
-            throw new \InvalidArgumentException("Ungültiger Name: Der Name ist zu lang");
+            throw new \InvalidArgumentException("Invalid Name: The name is too long");
         }
 
         if ((strlen($name) < 3))
         {
-            throw new \InvalidArgumentException("Ungültiger Name: Der Name ist zu kurz");
+            throw new \InvalidArgumentException("Invalid Name: The name is too short");
         }
 
         return htmlspecialchars($name);

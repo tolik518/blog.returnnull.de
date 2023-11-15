@@ -6,7 +6,7 @@ class MySQLArticleLoader
 {
     public function __construct(
         private MySQLConnector $mySQLConnector
-    ){}
+    ) {}
 
     public function get(int $articleID = LAST_ARTICLE_ID): array
     {
@@ -29,9 +29,12 @@ class MySQLArticleLoader
 
     private function fetchArticle(int $articleID): array
     {
-        $sql = $this->mySQLConnector->prepare('SELECT *
-                                                     FROM Articles
-                                                     WHERE id = :id;');
+        $sql = $this->mySQLConnector->prepare('
+            SELECT *
+            FROM Articles
+            WHERE id = :id;
+        ');
+
         $sql->bindValue(':id', $articleID);
         $sql->execute();
         return $sql->fetchAll();
@@ -39,7 +42,10 @@ class MySQLArticleLoader
 
     private function getLastArticleID(): ?int
     {
-        $sql = $this->mySQLConnector->prepare('SELECT MAX(id) FROM Articles');
+        $sql = $this->mySQLConnector->prepare('
+            SELECT MAX(id) FROM Articles
+        ');
+
         $sql->execute();
         
         $result = $sql->fetchAll();

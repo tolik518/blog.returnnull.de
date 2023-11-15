@@ -6,11 +6,11 @@ class MySQLCommentLoader
 {
     public function __construct(
         private MySQLConnector $mySQLConnector
-    ){}
+    ) {}
 
     public function get($articleID): array
     {
-        if ($articleID == LAST_ARTICLE_ID){
+        if ($articleID == LAST_ARTICLE_ID) {
             $articleID = $this->getLastArticleID();
         }
         return $this->fetchComment($articleID);
@@ -18,9 +18,12 @@ class MySQLCommentLoader
 
     private function fetchComment($articleID): array
     {
-        $sql = $this->mySQLConnector->prepare('SELECT *
-                                                     FROM Comments
-                                                     WHERE articleID = :articleID;');
+        $sql = $this->mySQLConnector->prepare('
+            SELECT *
+            FROM Comments
+            WHERE articleID = :articleID;
+        ');
+
         $sql->bindValue(':articleID', $articleID);
         $sql->execute();
         return $sql->fetchAll();
@@ -28,7 +31,10 @@ class MySQLCommentLoader
 
     private function getLastArticleID(): ?int
     {
-        $sql = $this->mySQLConnector->prepare('SELECT MAX(id) FROM Articles');
+        $sql = $this->mySQLConnector->prepare('
+            SELECT MAX(id) FROM Articles
+        ');
+
         $sql->execute();
         
         $result = $sql->fetchAll();

@@ -6,7 +6,7 @@ class PageNotFoundPage implements Page
 {
     public function __construct(
         private PageNotFoundProjector $pageNotFoundProjector
-    ){}
+    ) {}
 
     public function run(Request $request): Response
     {

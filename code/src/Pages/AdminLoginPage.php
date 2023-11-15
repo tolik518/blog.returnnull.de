@@ -9,7 +9,7 @@ class AdminLoginPage implements Page
         private MySQLAdminLogin       $mySQLAdminLogin,
         private SessionManager        $sessionManager,
         private VariablesWrapper      $variablesWrapper
-    ){}
+    ) {}
 
     public function run(Request $request): Response
     {

@@ -6,7 +6,7 @@ class ArticleProjector
 {
     public function __construct(
         private MessageProjector $messageProjector
-    ){}
+    ) {}
 
     public function getHtml($article, $comments, $menupoints, $tags, $errors = [""]): string
     {
@@ -61,7 +61,7 @@ class ArticleProjector
         $html = str_replace('%MENU%',     $menuHTML, $html);
         $html = str_replace('%MENUTITLE%', "Articles", $html);
 
-        if ($errors[0] ==""){
+        if ($errors[0] =="") {
             $html = str_replace('%FEHLERDISPLAY%', "none", $html);
         } else {
             $html = str_replace('%FEHLERDISPLAY%', "block", $html);

@@ -29,9 +29,11 @@ class Response
     public function send(): void
     {
         http_response_code($this->statusCode);
+
         foreach ($this->headers as $header) {
             header($header);
         }
+
         echo $this->body;
     }
 }

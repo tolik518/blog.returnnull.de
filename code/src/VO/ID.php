@@ -13,7 +13,7 @@ class ID
     private function validate($id): int
     {
         if (!is_numeric($id)) {
-            throw new \InvalidArgumentException('ID scheint ungültig zu sein');
+            throw new \InvalidArgumentException('ID seems to be invalid.');
         }
 
         return (int)$id;
