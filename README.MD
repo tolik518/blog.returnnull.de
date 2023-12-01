@@ -34,7 +34,103 @@ This is the source code behind [blog.returnnull.de](https://blog.returnnull.de).
     * Go to `Run` -> `Show Coverage Data` or press `Strg + Alt + 6` -> `+`
     * then choose `(projectfolder)/code/tests/reports/phpunit.coverage.xml` and press `OK` and `show selected`
 
+### Defining new page in the app
 
+#### Add a new page class
+
+Inside src/Page define a new class that implements Page interface, here minimal example:
+
+```php
+<?php
+
+// src/Page/HelloPage.php
+
+namespace Returnnull;
+
+class HelloPage implements Page
+{
+    public function run(Request $request): Response
+    {
+        return new Response('Hello World!');
+    }
+
+    // define the regexes that should be supported by this page
+    public function getSupportedUrlRegexes(): array
+    {
+        return [
+            '/^\/hello$/',
+        ];
+    }
+
+    // optional, define if this page should be protected by the login system, by default it is not protected
+    public function isProtected(): bool
+    {
+        return false;
+    }
+}
+```
+
+**Remeber to always run `make install` or `docker-compose -f docker/compose/docker-compose-cli.yml run --rm --no-deps php_cli php -d memory_limit=-1 /usr/local/bin/composer install` to update the autoloader.**
+
+#### Page with dependencies
+
+If your page have dependencies, than you have to define creator function in the `PageFactory` class. Here is an example:
+
+First we create page with dependencies:
+
+```php
+<?php
+
+// src/Page/HelloPageWithDeps.php
+
+namespace Returnnull;
+
+class HelloPageWithDeps implements Page
+{
+    public function __construct(
+        private SessionManager $sessionManager,
+    ) {
+    }
+
+    ...
+}
+```
+
+then in PageFactory add support for the page:
+
+```php
+<?php
+
+// src/Factories/PageFactory.php
+
+namespace Returnnull;
+
+class PageFactory
+{
+    ...
+
+    public function create(string $pageClassName): Page
+    {
+        $pageName = $this->getPageNameFromClass($pageClassName);
+
+        switch ($pageName) {
+            case 'HelloPageWithDeps':
+                return $this->createHelloPageWithDeps();
+            default:
+                return $this->tryToGetFallbackPage($pageName);
+        }
+    }
+
+    ...
+
+    private function createHelloPageWithDeps(): HelloPageWithDeps
+    {
+        return new HelloPageWithDeps(
+            $this->sessionManager,
+        );
+    }
+}
+```
 
 <!--
     TODO: Tag-System im Admin Bereich
