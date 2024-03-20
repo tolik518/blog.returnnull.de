@@ -1,0 +1,19 @@
+{
+  "extends": ["config:base"],
+  "packageRules": [
+    {
+      "updateTypes": ["patch"],
+      "groupName": "patch updates",
+      "groupSlug": "patch-updates"
+    },
+    {
+      "updateTypes": ["minor"],
+      "groupName": "minor updates",
+      "groupSlug": "minor-updates"
+    },
+    {
+      "updateTypes": ["major"],
+      "separateMultipleMajor": true
+    }
+  ]
+}
